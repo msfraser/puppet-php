@@ -104,14 +104,15 @@ class php::fpm::config (
     mode    => '0644',
   }
 
-  ensure_resource('file', '/var/run/php-fpm',
-    {
-      ensure => directory,
-      owner  => 'root',
-      group  => $root_group,
-      mode   => '0755',
-    }
-  )
+  # Removed as it causes an issue on RHEL8 fighting with permissions set by the php-fpm service on restart
+  #ensure_resource('file', '/var/run/php-fpm',
+  #  {
+  #    ensure => directory,
+  #    owner  => 'root',
+  #    group  => $root_group,
+  #    mode   => '0755',
+  #  }
+  #)
 
   ensure_resource('file', '/var/log/php-fpm/',
     {
